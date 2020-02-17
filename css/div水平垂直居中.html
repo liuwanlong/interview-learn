@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>div水平垂直居中</title>
+
+    <!-- <style>
+        /* 方案一 */
+        div.parent {
+            width: 200px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #ccc;
+        }
+
+        div.child {
+            width: 50px;
+            height: 50px;
+            background-color: tomato;
+
+            /* 下边这种方法勉强可以，参照方案三 */
+            /* margin: 0 auto;
+            align-self: center; */
+        }
+
+        /* 
+        
+        div.parent{
+            display:flex;
+        }
+        div.child{
+            argin:auto;
+        }
+        
+         */
+    </style> -->
+
+    <!-- <style>
+        /* 方案二 */
+        div.parent {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #ccc;
+
+            position: relative;
+        }
+
+        div.child {
+            width: 50px;
+            height: 50px;
+            background-color: tomato;
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /* margin，必须是明确的值 */
+            /* margin-left: -25px;
+            margin-top: -25px; */
+        }
+    </style> -->
+
+    <!-- <style>
+        /* 方案三 */
+        div.parent {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #ccc;
+
+            display: grid;
+        }
+
+        div.child {
+            width: 50px;
+            height: 50px;
+            background-color: tomato;
+
+            justify-self: center;
+            align-self: center;
+        }
+    </style> -->
+
+    <!-- <style>
+        /* 方案四 */
+        div.parent {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #ccc;
+
+            display: table-cell;
+            text-align: center;
+            vertical-align: middle;
+
+        }
+
+        div.child {
+            width: 50px;
+            height: 50px;
+            background-color: tomato;
+            /* 写下边这一行是因为，vertival-align只对inline或者inline-block的元素起作用 */
+            display: inline-block;
+        }
+    </style> -->
+
+
+    <style>
+        /* 方案五 */
+        div.parent {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #ccc;
+
+            /* 这里不设置font-size 为0 会有便宜 */
+            font-size: 0;
+            text-align: center;
+        }
+
+        div.parent::before {
+            content: "";
+            display: inline-block;
+            width: 0;
+            height: 100%;
+            vertical-align: middle;
+        }
+
+        div.child {
+            width: 50px;
+            height: 50px;
+            background-color: tomato;
+
+            display: inline-block;
+            vertical-align: middle;
+
+            /* 
+            
+            这个我前几天刚在张鑫旭的《CSS世界》里面第一次看到，原理就是（基于我个人的理解）：
+            设置inline-block和vertical-align:middle后，里面的元素会基于中间的文字准线居中对齐（学生时代的英语本子里面写字母，都是4条线形成三个空白区域，
+            文字的对齐就是根据这几条线的）vertical-align更多信息可以看看张鑫旭博文； 
+            然后，由于伪类是position:static(默认）的，那么伪类撑开了父元素的基准线（高度是100%），使得此时文字的基准线就是整个div.parent的中心了，
+            另外vertical-align只影响inline或者inline-block的，所以div.child设置vertical-align就能居中了。 
+            以上是我个人的理解，有很多表达不清楚的地方，更详细的内容还是推荐张鑫旭的博文。
+             */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        <div class="child"></div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CNs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用css或js实现多行文本溢出省略效果</title>
+
+
+    <!-- <style>
+        /* css方案 */
+        div.wrap {
+            width: 200px;
+            height: 65px;
+            border: 1px solid tomato;
+
+            text-overflow: ellipsis;
+            overflow: hidden;
+
+            /* 单行需要设置 */
+            /* display: block;
+            white-space: nowrap; */
+
+            /* 多行需要设置 */
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+    </style> -->
+
+    <style>
+        /* js方案 */
+        div.wrap {
+            width: 200px;
+            height: 65px;
+            border: 1px solid tomato;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="wrap">
+        使用css或js实现多行文本溢出省略效果使用css或js实现多行文本溢出省略效果使用css或js实现多行文本溢出省略效果使用css或js实现多行文本溢出省略效果
+        使用css或js实现多行文本溢出省略效果使用css或js实现多行文本溢出省略效果使用css或js实现多行文本溢出省略效果使用css或js实现多行文本溢出省略效果
+        使用css或js实现多行文本溢出省略效果使用css或js实现多行文本溢出省略效果使用css或js实现多行文本溢出省略效果使用css或js实现多行文本溢出省略效果
+    </div>
+
+    <script>
+        // 
+        const p = document.querySelector('div.wrap')
+        let words = p.innerHTML.split('')
+        while (p.scrollHeight > p.clientHeight) {
+            words.pop()
+            p.innerHTML = words.join('') + '...'
+        }
+    </script>
+</body>
+
+</html>
