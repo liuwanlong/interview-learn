@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>箭头函数与普通函数</title>
+</head>
+
+<body>
+    <script>
+        // ()=> {}  & function(){}
+
+        // 1. 箭头函数体内的this，指的是定义的时候所在的对象
+        // 2. 不可以使用arguments对象，如果要用可以用rest参数代替
+        // 3. 不可以使用yield命令，因为箭头函数不能用作Generator函数
+        // 4. 不可以使用new命令，因为：
+        // 1）：没有自己的this，无法调用call，apply
+        // 2）：没有 prototype 属性 ，而 new 命令在执行时需要将构造函数的 prototype 赋值给新的对象的 __proto__
+
+        let a = () => {
+            console.log(arguments);
+        }
+
+        a(); // arguments is not defined
+
+
+        // 引申一下，new的时候 发生了什么：
+        // • 创建一个空对象，将它的引用赋给 this，继承函数的原型。
+        // • 通过 this 将属性和方法添加至这个对象
+        // • 最后返回 this 指向的新对象，也就是实例（如果没有手动返回其他的对象）
+
+        // 简单的new函数
+
+        // 构造器函数
+        // let Parent = function (name, age) {
+        //     this.name = name;
+        //     this.age = age;
+        // };
+        // Parent.prototype.sayName = function () {
+        //     console.log(this.name);
+        // };
+        // //自己定义的new方法
+        // let newMethod = function (Parent, ...rest) {
+        //     // 1.以构造器的prototype属性为原型，创建新对象；
+        //     let child = Object.create(Parent.prototype);
+        //     // 2.将this和调用参数传给构造器执行
+        //     let result = Parent.apply(child, rest);
+        //     // 3.如果构造器没有手动返回对象，则返回第一步的对象
+        //     return typeof result === 'object' ? result : child;
+        // };
+        // //创建实例，将构造函数Parent与形参作为参数传入
+        // const child = newMethod(Parent, 'echo', 26);
+        // child.sayName() //'echo';
+
+        // //最后检验，与使用new的效果相同
+        // child instanceof Parent//true
+        // child.hasOwnProperty('name')//true
+        // child.hasOwnProperty('age')//true
+        // child.hasOwnProperty('sayName')//false
+    </script>
+</body>
+
+</html>

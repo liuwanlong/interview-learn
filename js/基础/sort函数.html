@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sort函数</title>
+</head>
+
+<body>
+    <script>
+        // 方法当以:用原地算法对数组的元素进行排序，并返回数组。
+        // 默认排序顺序是在将元素转换为字符串，然后比较它们的UTF-16代码单元值序列时构建的
+
+        console.log([3, 15, 8, 29, 102, 22].sort()) // [102, 15, 22, 29, 3, 8]  // 将元素转换为字符串，然后比较它们的UTF-16代码单元值序列
+
+        console.log([3, 15, 8, 29, 102, 22].sort((a, b) => a - b)) // [3, 8,15,22,29,102] 
+    </script>
+</body>
+
+</html>
